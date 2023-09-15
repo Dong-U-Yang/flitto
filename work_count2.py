@@ -79,74 +79,23 @@ def daily_work(date, user):
 
 
 
-st.title('일일 작업량 게시')
+def main():
+    st.title('일일 작업량 게시')
 
-# 사용자 입력 받기
-date_input = st.text_input('날짜 (YYMMDD 형식으로 입력하세요  ex)230915 ):')
-user_input = st.text_input('사용자 ID를 입력하세요 ( ex) FRA18000 )  :')
+    # 사용자 입력 받기
+    date_input = st.text_input('날짜 (YYMMDD 형식으로 입력하세요  ex)230915 ):')
+    user_input = st.text_input('사용자 ID를 입력하세요 ( ex) FRA18000 )  :')
 
-# 버튼이 눌렸을 때 동작
-if button_pressed:
     if date_input and user_input:
         user_workload = daily_work(date_input, user_input)
         st.write(f"{user_input}님의 {date_input}의 작업량은 {user_workload}개 입니다.")
+    if st.button('버튼을 누르세요'):
+    st.write('버튼이 눌렸습니다!')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == '__main__':
+    main()
 
 
 
