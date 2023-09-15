@@ -89,8 +89,7 @@ def main():
     if date_input and user_input:
         user_workload = daily_work(date_input, user_input)
         st.write(f"{user_input}님의 {date_input}의 작업량은 {user_workload}개 입니다.")
-    if st.button('버튼을 누르세요'):
-    st.write('버튼이 눌렸습니다!')
+    
 
 
 
