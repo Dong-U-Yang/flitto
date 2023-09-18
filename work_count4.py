@@ -48,22 +48,17 @@ def daily_work(date, user):
 #     # 이전 날짜에 해당하는 시트 불러오기
   sheet1_name = date
   today = datetime.strptime(date,'%y%m%d')
-  if today.weekday()==0:
-      sheet2_name = (datetime.strptime(date,'%y%m%d') - timedelta(1)).strftime('%y%m%d')
-      # 주말 경우 퉁쳐서
-  else:
-      sheet2_name = (datetime.strptime(date,'%y%m%d') - timedelta(1)).strftime('%y%m%d')
+  sheet2_name = (datetime.strptime(date,'%y%m%d') - timedelta(1)).strftime('%y%m%d')
+  
   sheet1 = client.open(sheet_name).worksheet(sheet1_name)
   sheet2 = client.open(sheet_name).worksheet(sheet2_name)
 #     # 데이터 읽어오기
   data1 = sheet1.get_all_records()
   data2 = sheet2.get_all_records()
-
-
-  #미배분 파일 가져오기 (파일명 - key)
   df_t = pd.DataFrame(data1)
   df_y = pd.DataFrame(data2)
 
+  # 필요한 컬럼만 남기기
   df_y['작업수량'] = df_y['재할당']+df_y['검수 대기']+df_y['검수 완료']
   df_t['작업수량'] = df_t['재할당']+df_t['검수 대기']+df_t['검수 완료']
 
