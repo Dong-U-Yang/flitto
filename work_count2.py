@@ -41,10 +41,9 @@ def daily_work(date, user):
 #     # 이전 날짜에 해당하는 시트 불러오기
   sheet1_name = date
   today = datetime.strptime(date,'%y%m%d')
-  if today.weekday()==0:
-      sheet2_name = (datetime.strptime(date,'%y%m%d') - timedelta(3)).strftime('%y%m%d')
-  else:
-      sheet2_name = (datetime.strptime(date,'%y%m%d') - timedelta(1)).strftime('%y%m%d')
+  sheet2_name = (datetime.strptime(date,'%y%m%d') - timedelta(1)).strftime('%y%m%d')
+  
+  
   sheet1 = client.open(sheet_name).worksheet(sheet1_name)
   sheet2 = client.open(sheet_name).worksheet(sheet2_name)
 #     # 데이터 읽어오기
