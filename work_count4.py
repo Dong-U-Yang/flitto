@@ -41,7 +41,7 @@ def daily_work(date, user):
   )
   client = gspread.authorize(credentials)
 
-  sheet_name = '작업량체크'
+  sheet_name = 'hpr_static'
 
 
 
