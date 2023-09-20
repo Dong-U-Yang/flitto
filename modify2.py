@@ -21,13 +21,13 @@ def remove_text(target_text, text_to_remove):
 def main():
     st.title("Text Editor")
 
-    target_text = st.text_area("Enter your text:", "")
-    text_to_remove = st.text_input("Enter text to remove:", "")
+    target_text = st.text_area("글을 입력하세요:", "")
+    text_to_remove = st.text_input("제거할 단어를 입력 하세요 e.g.) ** :", "")
 
-    if st.button("Remove"):
+    if st.button("제거하기"):
         if target_text and text_to_remove:
             new_text = remove_text(target_text, text_to_remove)
-            st.subheader("Modified Text:")
+            st.subheader("수정된 글:")
             st.text_area("Result:", value=new_text)  # 결과가 입력창에 나타남
         else:
             st.warning("Please enter both the target text and text to remove.")
