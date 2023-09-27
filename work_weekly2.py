@@ -6,7 +6,6 @@ Created on Wed Sep 27 18:40:56 2023
 """
 
 
-
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from google.oauth2 import service_account
@@ -64,9 +63,11 @@ def daily_work(user):
 
 #     # 이전 날짜에 해당하는 시트 불러오기
   today = datetime.now()
-  sheet1_name = today
-  today = datetime.strptime(today,'%y%m%d')
-  sheet2_name = today - timedelta(days=today.weekday())
+  sheet1 = datetime.strftime(today,'%y%m%d')
+  sheet2 = today - timedelta(days=today.weekday())
+  
+  sheet1 = client.open(sheet_name).worksheet(sheet1)
+  sheet2 = client.open(sheet_name).worksheet(sheet2)
   
 #     # 데이터 읽어오기
   data1 = sheet1.get_all_records()
@@ -104,22 +105,20 @@ def main():
     st.title('일일 작업량 게시')
 
     # 사용자 입력 받기
-    date_input = st.text_input('날짜 (YYMMDD 형식으로 입력하세요 ex) 230915 ):')
     email_input = st.text_input('사용자 이메일을 입력하세요 (ex) abcd1234@flitto.com):')
 
-    if date_input and email_input:
+    if  email_input:
         # 이메일에 해당하는 ID 찾기
         user_id = find_id_by_email(email_input)[0]
         user_name = find_id_by_email(email_input)[1]
 
         if user_id:
-            user_workload = daily_work(date_input, user_id)
-            st.write(f"{user_name} 님(ID: {user_id})의 {date_input}의 작업량은 {user_workload}개 입니다.")
+            user_workload = daily_work(user_id)
+            st.write(f"{user_name} 님(ID: {user_id})의 작업량은 {user_workload}개 입니다.")
         else:
             st.write(f"입력한 이메일 ({email_input})에 해당하는 사용자를 찾을 수 없습니다.")
 
 
 if __name__ == '__main__':
     main()
-
 
