@@ -79,10 +79,10 @@ def daily_work(user):
 
 
 def main():
-    st.title('일일 작업량 게시')
+    st.title('이번 주의 작업량 확인하기')
 
     # 사용자 입력 받기
-    id_input = st.text_input('사용자 ID를 입력하세요 (ex) FRA16000:')
+    id_input = st.text_input('사용자 ID를 입력하세요 (ex) FRA16000: \n *에러가 뜨더라도 입력해주세요. 오늘이 월요일일 경우, 지난 주 작업량이 나옵니다.')
     user_workload = daily_work(id_input)
    
     if id_input:
