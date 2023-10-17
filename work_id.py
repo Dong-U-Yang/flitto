@@ -60,8 +60,8 @@ def daily_work(user):
   df_y['작업수량'] = df_y['재할당']+df_y['검수 대기']+df_y['검수 완료']
   df_t['작업수량'] = df_t['재할당']+df_t['검수 대기']+df_t['검수 완료']
 
-  df_y = df_y[['Domain','ID','작업수량','계']]
-  df_t = df_t[['Domain','ID','작업수량','계']]
+  df_y = df_y[['Domain','ID','작업수량']]
+  df_t = df_t[['Domain','ID','작업수량']]
 
 
   tmp = pd.merge(df_t, df_y, how = 'left', on = ['Domain','ID']).fillna(0)
