@@ -66,12 +66,18 @@ def daily_work(user):
 
   tmp = pd.merge(df_t, df_y, how = 'left', on = ['Domain','ID']).fillna(0)
 
+  
 
   tmp['일작업량'] = tmp['작업수량_x'] - tmp['작업수량_y']
   result = tmp.groupby('ID')['일작업량'].sum().reset_index()
   result = result.sort_values('일작업량', ascending=False)
   
-  user_workload = result.loc[result['ID'] == user, '일작업량'].values[0] 
+  user_workload = result.loc[result['ID'] == user, '일작업량'].values
+  # 입력한 ID가 없는 경우 오류가 뜨는 것을 방지
+  if user_workload:
+        user_workload = user_workload[0]
+    else:
+        user_workload = 0
 
   
   return user_workload
