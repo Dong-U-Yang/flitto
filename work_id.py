@@ -76,7 +76,7 @@ def daily_work(user):
   # 입력한 ID가 없는 경우 오류가 뜨는 것을 방지
   if user_workload:
         user_workload = user_workload[0]
-    else:
+  else:
         user_workload = 0
 
   
