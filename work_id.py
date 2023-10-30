@@ -34,7 +34,7 @@ def daily_work(user):
   weekday = today.weekday()  # 0(월)부터 6(일)까지, 5(토)와 6(일)이 주말입니다.
 # 월요일일 경우, 지난 주 월요일과 비교하여 지난 주 작업량이 나오게 할 것.  
   if weekday ==5 or weekday == 6:
-      while today.weeday() !=4:
+      while today.weekday() !=4:
           today -= timedelta(days=1)
           
   if weekday ==0 :
