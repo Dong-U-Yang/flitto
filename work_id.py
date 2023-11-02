@@ -31,6 +31,8 @@ def daily_work(user):
 
 #     # 이전 날짜에 해당하는 시트 불러오기
   today = datetime.now()
+  yday = datetime.now()-timedelta(1)
+  yday = yday.strftime('%y%m%d')
   weekday = today.weekday()  # 0(월)부터 6(일)까지, 5(토)와 6(일)이 주말입니다.
 # 월요일일 경우, 지난 주 월요일과 비교하여 지난 주 작업량이 나오게 할 것.  
   if weekday ==5 or weekday == 6:
@@ -47,6 +49,8 @@ def daily_work(user):
    
   
   sheet1 = client.open(sheet_name).worksheet(today)
+  if sheet1 is None:
+    sheet1 = client.open(sheet_name).worksheet(yday)
   sheet2 = client.open(sheet_name).worksheet(monday)
 #     # 데이터 읽어오기
   data1 = sheet1.get_all_records()
